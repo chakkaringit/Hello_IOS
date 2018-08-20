@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     
     @IBAction func clickButton(_ sender: Any) {
         self.lblHello.text = "Show Message: \(self.txtMessage.text!)"
+        
     }
     
     @IBAction func changeTheme(_ sender: Any) {
