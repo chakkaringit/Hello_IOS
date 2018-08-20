@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     var count: Int = 0;
     
     @IBAction func clickButton(_ sender: Any) {
-        self.lblHello.text = "Hello \(self.txtMessage.text!) click num \(count)"
+        self.lblHello.text = "Show Message: \(self.txtMessage.text!)"
     }
     
     @IBAction func changeTheme(_ sender: Any) {
@@ -35,6 +35,7 @@ class ViewController: UIViewController {
             }
             
         }
+        self.lblHello.text = "Click count: \(count)"
         self.count += 1
     }
     
