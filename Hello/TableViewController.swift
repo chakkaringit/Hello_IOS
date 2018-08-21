@@ -9,7 +9,23 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-
+    
+    let dailyTasks = ["Check all windows",
+                      "Check all doors",
+                      "Is the boiler fueled?",
+                      "Check the mailbox",
+                      "Empty trash containers",
+                      "If freezing, check water pipes",
+                      "Document \"strange and unusual\" occurrences",]
+    
+    let weeklyTasks = ["Check inside all cabins",
+                       "Flush all lavatories in cabins",
+                       "Walk the perimeter of property",]
+    
+    let monthlyTasks = ["Test security alarm",
+                        "Test motion detectors",
+                        "Test smoke alarms"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,12 +40,26 @@ class TableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 3;
+        
+    }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 30
+        switch section {
+        case 0:
+            return self.dailyTasks.count
+        case 1:
+            return self.weeklyTasks.count
+        case 2:
+            return self.monthlyTasks.count
+        default:
+            return 0
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -38,9 +68,32 @@ class TableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellIdentifier", for: indexPath) as UITableViewCell
         cell.textLabel?.text = "item \(indexPath.row)"
-        //configure your cell
+        
+        switch indexPath.section {
+        case 0:
+            cell.textLabel?.text = self.dailyTasks[indexPath.row]
+        case 1:
+            cell.textLabel?.text = self.weeklyTasks[indexPath.row]
+        case 2:
+            cell.textLabel?.text = self.monthlyTasks[indexPath.row]
+        default:
+            cell.textLabel?.text = ""
+        }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Daily"
+        case 1:
+            return "Weekly"
+        case 2:
+            return "Monthly"
+        default:
+            return ""
+        }
     }
     
     /*
