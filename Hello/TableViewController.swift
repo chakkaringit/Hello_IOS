@@ -66,18 +66,23 @@ class TableViewController: UITableViewController {
         //let cell = UITableViewCell()
         //cell.textLabel?.text = "item \(indexPath.row)"
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellIdentifier", for: indexPath) as UITableViewCell
-        cell.textLabel?.text = "item \(indexPath.row)"
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "CellIdentifier", for: indexPath) as UITableViewCell
+        //let cell = CustomTableViewCell()
+        //cell.textLabel?.text = "item \(indexPath.row)"
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellIdentifier", for: indexPath)
+            as! CustomTableViewCell
         
         switch indexPath.section {
         case 0:
-            cell.textLabel?.text = self.dailyTasks[indexPath.row]
+            //cell.textLabel?.text = self.dailyTasks[indexPath.row]
+            cell.lblTask?.text = self.dailyTasks[indexPath.row]
         case 1:
-            cell.textLabel?.text = self.weeklyTasks[indexPath.row]
+            cell.lblTask?.text = self.weeklyTasks[indexPath.row]
         case 2:
-            cell.textLabel?.text = self.monthlyTasks[indexPath.row]
+            cell.lblTask?.text = self.monthlyTasks[indexPath.row]
         default:
-            cell.textLabel?.text = ""
+            cell.lblTask?.text = ""
         }
         
         return cell
